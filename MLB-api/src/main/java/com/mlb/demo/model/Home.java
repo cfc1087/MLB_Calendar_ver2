@@ -3,27 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mlb.model;
+package com.mlb.demo.model;
 
 /**
  *
  * @author Christopher
  */
-public class Team {
+public class Home {
 
-    private int id;
-    private String name;
+    private final Team team;
 
-    public String getName() {
-        return name;
+     public Home() {
+       team = new Team();
     }
-
-    public int getID() {
-        return id;
+    
+    public String getHomeTeam(){
+        return team.getName();
     }
-
     @Override
     public String toString() {
-        return name + "\nID:" + id;
+        return team.toString();
     }
 }

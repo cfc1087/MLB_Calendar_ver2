@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MLB-app';
+    calendarPlugins = [dayGridPlugin]; // important!
 }

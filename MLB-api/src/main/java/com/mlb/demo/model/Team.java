@@ -3,26 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mlb.model;
+package com.mlb.demo.model;
 
 /**
  *
  * @author Christopher
  */
-public class Away {
+public class Team {
 
-    private final Team team;
+    private int id;
+    private String name;
 
-    public Away() {
-        team = new Team();
+    public String getName() {
+        return name;
     }
 
-    public String getAwayTeam() {
-        return team.getName();
+    public int getID() {
+        return id;
     }
 
     @Override
     public String toString() {
-        return team.toString();
+        return name + "\nID:" + id;
     }
 }
