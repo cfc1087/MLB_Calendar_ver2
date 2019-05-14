@@ -8,7 +8,7 @@ public class MlbVer2Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MlbVer2Application.class, args);
-		System.out.println("RUNNING MAIN");
+	
 	}
 
 }

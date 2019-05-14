@@ -6,6 +6,7 @@
 package com.mlb.demo.teamSelection;
 
 import java.awt.Color;
+import java.util.stream.Stream;
 
 /**
  *
@@ -72,5 +73,8 @@ public enum TeamSelection {
 
     public Color getColor() {
         return color;
+    }
+    public static Stream<TeamSelection>stream(){
+    	return Stream.of(TeamSelection.values());
     }
 }

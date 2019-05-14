@@ -2,24 +2,36 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 
-import {FullCalendarModule} from 'primeng/fullcalendar';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
+import {HttpClientModule} from '@angular/common/http';
+//primeng components
+import {FullCalendarModule} from 'primeng/fullcalendar';
+import { DatePipe } from '@angular/common';
+ 
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FullCalendarModule,
     
-    FullCalendarModule
   ],
-  providers: [],
+  exports:[
+    
+  ],
+  
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
-
-
-export class AppModule {}
+export class AppModule { }
