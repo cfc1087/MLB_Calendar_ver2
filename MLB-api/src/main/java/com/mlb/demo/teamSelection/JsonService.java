@@ -20,19 +20,15 @@ public class JsonService {
 	private LocalDate date;
 
 	private String url;
-	private int teamId;
+	
 
 	
 
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
+	
 
-	public Dates[] getJSON(int teamId, Month monthSelected) throws IOException {
+	public Dates[] getJSON(int teamId) throws IOException {
+	
 		
-		if (monthSelected != null) {
-			date = LocalDate.of(2019, monthSelected, 1);
-		}
 
 		// keep for reference
 		// ="http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=147&season=2018&startDate=2018-06-01&endDate=2018-06-30";
@@ -40,8 +36,8 @@ public class JsonService {
 		url = "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1";
 		String teamIdURI = "&teamId=" + teamId;
 		String seasonYearURI = "&season=" + date.getYear();
-		String startDateURI = "&startDate=" + date.getYear() + "-" + date.getMonthValue() + "-01";
-		String endDateURI = "&endDate=" + date.getYear() + "-" + date.getMonthValue() + "-" + date.lengthOfMonth();
+		String startDateURI = "&startDate=" + date.getYear() + "-01-01";
+		String endDateURI = "&endDate=" + date.getYear() + "-12-31";
 		url += teamIdURI + seasonYearURI + startDateURI + endDateURI;
 
 		Gson gson = new GsonBuilder().registerTypeAdapter(Dates[].class, new MyDeserializer()).setPrettyPrinting()

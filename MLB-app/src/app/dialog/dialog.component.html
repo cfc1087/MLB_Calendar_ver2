@@ -1,0 +1,17 @@
+
+<mat-dialog-content>
+    <mat-form-field class="example-full-width">
+    <mat-label>Select Team</mat-label>
+        <mat-select [(ngModel)]="team">
+          <mat-option *ngFor="let team of teamList" [value]="team">
+            {{team.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+      </mat-dialog-content>
+
+<mat-dialog-actions>
+ <button mat-button mat-dialog-close>Cancel</button>
+ <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog.-->
+ <button mat-button (click)="confirm()">OK</button>
+</mat-dialog-actions>

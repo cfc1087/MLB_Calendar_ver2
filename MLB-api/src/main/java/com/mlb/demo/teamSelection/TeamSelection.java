@@ -22,7 +22,7 @@ public enum TeamSelection {
     CHICAGOWHITESOX("Chicago White Sox", "CWS", 145, new Color(39, 37, 31)),
     CINCINNATIREDS("Cincinnati Reds", "CIN", 113, new Color(213, 0, 50)),
     CLEVELANDINDIANS("Cleveland Indians", "CLE", 114, new Color(12, 35, 64)),
-    COLORADOROCKIES("new Colorado Rockies", "COL", 115, new Color(51, 0, 114)),
+    COLORADOROCKIES("Colorado Rockies", "COL", 115, new Color(51, 0, 114)),
     DETROITTIGERS("Detroit Tigers", "DET", 116, new Color(12, 35, 64)),
     HOUSTONASTROS("Houston Astros", "HOU", 117, new Color(0, 45, 98)),
     KANSASCITYROYALS("Kansas City Royals", "KAN", 118, new Color(26, 71, 132)),
@@ -73,6 +73,14 @@ public enum TeamSelection {
 
     public Color getColor() {
         return color;
+    }
+    public String getRGB() {
+    	String rgb = "";
+    	int red = this.color.getRed();
+    	int green = this.color.getGreen();
+    	int blue = this.color.getBlue();
+    	rgb +="rgb("+red+","+green+","+blue+")";
+    	return rgb;
     }
     public static Stream<TeamSelection>stream(){
     	return Stream.of(TeamSelection.values());
