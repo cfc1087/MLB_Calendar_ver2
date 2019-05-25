@@ -57,8 +57,5 @@ public class TeamScheduleService {
 		
 		return teamList;
 	}
-	public String getTeamColor(String teamSelected) {
-		String teamEnum = teamSelected.replace('.', '_').replaceAll(" ", "").toUpperCase();
-		return TeamSelection.valueOf(teamEnum).getRGB();
-	}
+	
 }

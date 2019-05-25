@@ -2,7 +2,7 @@ package com.mlb.demo.teamSelection;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Month;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +42,9 @@ public class JsonService {
 
 		Gson gson = new GsonBuilder().registerTypeAdapter(Dates[].class, new MyDeserializer()).setPrettyPrinting()
 				.create();
+		//dates =gson.fromJson(readURL.readURLString(url), Dates[].class);
+		//Gson g = new GsonBuilder().setPrettyPrinting().create();
+		//System.out.println(g.toJson(dates));
 		return gson.fromJson(readURL.readURLString(url), Dates[].class);
 	}
 

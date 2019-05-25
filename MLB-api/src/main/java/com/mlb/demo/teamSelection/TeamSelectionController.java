@@ -31,11 +31,7 @@ public Dates[] getDates(@PathVariable String teamSelected,
 		return tss.getDates(teamSelected, monthSelected);
 }
 
-@GetMapping("/{teamSelected}/color")//default get request with  LocalDate.now()
-public String getDates(@PathVariable String teamSelected) throws IOException {
-	System.out.println("GETTING TEAM COLOR");
-	return tss.getTeamColor(teamSelected);
-}
+
 	
 	/*@GetMapping("/")
 	public List<String> getTeamList(){
