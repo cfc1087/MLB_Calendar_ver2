@@ -9,9 +9,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 
+import * as jquery from 'jquery';
 
-
-
+import { OptionsInput } from '@fullcalendar/core';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,18 +24,18 @@ export class AppComponent implements OnInit {
   title = 'MLB-app';
   dates: Dates[];
   teamList: Team[];
-  team: Team;
   color: String;
+  team: Team;
+
   constructor(private service: DatesService, public dialog: MatDialog) {
 
   }
-  getColor() {
-    console.log(this.color)
-    return this.color
-  }
+
   ngOnInit() {
 
     this.options = {
+
+
       plugins: [dayGridPlugin],
       defaultDate: this.service.getNow(),
       customButtons: {
@@ -49,10 +50,22 @@ export class AppComponent implements OnInit {
         right: 'myCustomButton',
       },
       height: 850,
-      aspectRatio: 2.25,
-     
-      eventBackgroundColor:'#4286f4',
-     // eventColor: 'rgb(0,0,0)'
+      aspectRatio: 2.0,
+      contentHeight: 850,
+      eventTextColor:"#ffff",
+
+     /* eventRender: function(event, element, view) {
+        
+        if (event.rendering == 'background') {
+          var bgEventTitle = document.createElement('div');
+          bgEventTitle.style.position = 'absolute';
+          bgEventTitle.style.bottom = '0';
+           bgEventTitle.classList.add('fc-event'); 
+        bgEventTitle.innerHTML = '<span class="fc-title">' +  event.title + '</span>';
+           set container element positioning to relative so the positioning above will work 
+         element.css('position', 'relative').html(bgEventTitle);
+    }
+      }*/
     };
 
     //this.service.getDates("Atlanta Braves").subscribe(data=>{
@@ -80,25 +93,43 @@ export class AppComponent implements OnInit {
 
 
     dialogRef.afterClosed().subscribe(selection => {
+
       this.team = selection;
-      this.color = this.team.color;
       this.service.getDates(this.team.name).subscribe(schedule => {
-        this.events = schedule;
-console.log(this.events)
+        this.clearEvents();
+        
+
+        for (let event of schedule) {
+          if (event.games[0].home === this.team.name) {
+            this.events.push({
+              title: this.team.name + ' VS ' + event.games[0].away,
+              start: event.date,
+              rendering: 'background',
+             color: this.team.color,
+              
+
+            })
+          } else {
+            this.events.push({
+              title: this.team.name + ' @ ' + event.games[0].away,
+              start: event.date,
+              rendering: 'background',
+              color: '#bcbcbc',
+              
+            })
+          }
+        }
 
       });
-      this.events = [{
-        start:'2019-05-19',
-        rendering:'background'
 
-      }]
-this.options = {
-  rendering:'background',
-  eventBackgroundColor:this.color
-  //eventColor:this.color
-}
+
+
     });
 
   }
+  clearEvents() {
+    this.events = [];
+  }
+  
 
 }

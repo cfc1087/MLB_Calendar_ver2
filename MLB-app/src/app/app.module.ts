@@ -9,17 +9,17 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule, 
+  MatCardModule,
   MatSelectModule
 } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 //primeng components
-import { FullCalendarModule } from 'primeng/fullcalendar';
+//import { FullCalendarModule } from 'primeng/fullcalendar';
 import { DatePipe } from '@angular/common';
 import { DialogComponent } from './dialog/dialog.component';
-//import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { DialogComponent } from './dialog/dialog.component';
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-    
+
     FormsModule
   ],
   exports: [

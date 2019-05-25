@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { Dates } from '../model/Dates';
 import { TemplateAst } from '@angular/compiler';
 import { formatDate, DatePipe } from '@angular/common';
-
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import { Events } from '../model/Events';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,9 @@ export class DatesService {
   }
   getDates(teamSelected: String): Observable<any> {
 
-
-    return this.http.get('http://localhost:8080/' + teamSelected.replace(/ /g, ""));//'?monthSelected='+this.monthSelected);
+    return this.http.get<Events[]>('http://localhost:8080/' + teamSelected.replace(/ /g, ""));
+  
+ //   return this.http.get('http://localhost:8080/' + teamSelected.replace(/ /g, ""));//'?monthSelected='+this.monthSelected);
   }
   getTeamList(): Observable<any> {
     return this.http.get('http://localhost:8080');

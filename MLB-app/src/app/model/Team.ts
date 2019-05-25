@@ -4,8 +4,5 @@ color:String
 
 
 
-getColor():String{
-    return this.color;
-}
 
 }
