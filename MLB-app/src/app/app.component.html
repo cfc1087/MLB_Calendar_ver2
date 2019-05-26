@@ -1,20 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    MLB CALENDAR
-  </h1>
 
-  <full-calendar #calendar *ngIf="options"
-  [events]="events" 
-  [plugins]="options.plugins" 
+
+
+<div style="text-align:center">
+<h1>
+  MLB CALENDAR
+</h1></div>
+<div id="calendar">
+
+
+  <full-calendar #calendar *ngIf="options" 
+  [events]="options.events" 
+  [plugins]="options.plugins"
   [header]="options.header"
   [customButtons]="options.customButtons"
   [aspectRatio]="options.aspectRatio"
   [height]="options.height"
   [contentHeight]="options.contentHeight"
-  
-  [eventTextColor]="options.eventTextColor"
-  ></full-calendar>
+  [eventTextColor]="options.eventTextColor"></full-calendar>
   <div>
 
 

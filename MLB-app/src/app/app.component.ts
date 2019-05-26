@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 import { Dates } from './model/Dates';
@@ -9,18 +9,21 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 
-import * as jquery from 'jquery';
-
-import { OptionsInput } from '@fullcalendar/core';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { Calendar } from '@fullcalendar/core';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
+
   events: any[];
   options: any;
+  calendarPlugins = [dayGridPlugin];
   title = 'MLB-app';
   dates: Dates[];
   teamList: Team[];
@@ -31,11 +34,20 @@ export class AppComponent implements OnInit {
 
   }
 
+
+  someMethod() {
+    let calendarApi = this.calendarComponent.getApi();
+    calendarApi.render();
+  }
+
   ngOnInit() {
+    document.addEventListener('DOMContentLoaded', function () {
+      let calendarEl: HTMLElement = document.getElementById('calendar')!;
+      
 
-    this.options = {
 
-
+    });
+   this.options = {
       plugins: [dayGridPlugin],
       defaultDate: this.service.getNow(),
       customButtons: {
@@ -52,26 +64,13 @@ export class AppComponent implements OnInit {
       height: 850,
       aspectRatio: 2.0,
       contentHeight: 850,
-      eventTextColor:"#ffff",
+      eventTextColor: "#ffff",
 
-     /* eventRender: function(event, element, view) {
-        
-        if (event.rendering == 'background') {
-          var bgEventTitle = document.createElement('div');
-          bgEventTitle.style.position = 'absolute';
-          bgEventTitle.style.bottom = '0';
-           bgEventTitle.classList.add('fc-event'); 
-        bgEventTitle.innerHTML = '<span class="fc-title">' +  event.title + '</span>';
-           set container element positioning to relative so the positioning above will work 
-         element.css('position', 'relative').html(bgEventTitle);
-    }
-      }*/
     };
-
-    //this.service.getDates("Atlanta Braves").subscribe(data=>{
-    //  this.dates = data;
-    //});
+    this.someMethod();
   }
+
+
 
   click() {
     this.service.getTeamList().subscribe(data => {
@@ -97,7 +96,7 @@ export class AppComponent implements OnInit {
       this.team = selection;
       this.service.getDates(this.team.name).subscribe(schedule => {
         this.clearEvents();
-        
+
 
         for (let event of schedule) {
           if (event.games[0].home === this.team.name) {
@@ -105,8 +104,8 @@ export class AppComponent implements OnInit {
               title: this.team.name + ' VS ' + event.games[0].away,
               start: event.date,
               rendering: 'background',
-             color: this.team.color,
-              
+              color: this.team.color,
+
 
             })
           } else {
@@ -115,7 +114,7 @@ export class AppComponent implements OnInit {
               start: event.date,
               rendering: 'background',
               color: '#bcbcbc',
-              
+
             })
           }
         }
@@ -129,7 +128,8 @@ export class AppComponent implements OnInit {
   }
   clearEvents() {
     this.events = [];
+
   }
-  
+
 
 }

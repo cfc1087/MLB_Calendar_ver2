@@ -15,8 +15,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-//primeng components
-//import { FullCalendarModule } from 'primeng/fullcalendar';
+
 import { DatePipe } from '@angular/common';
 import { DialogComponent } from './dialog/dialog.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -25,8 +24,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   declarations: [
     AppComponent,
     DialogComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -41,7 +38,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatIconModule,
     MatCardModule,
     MatSelectModule,
-
     FormsModule
   ],
   exports: [
