@@ -9,8 +9,9 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import { Calendar } from '@fullcalendar/core';
+import { FullCalendar } from 'primeng/fullcalendar';
+import { element } from '@angular/core/src/render3';
+
 
 
 @Component({
@@ -19,11 +20,9 @@ import { Calendar } from '@fullcalendar/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
-
+  @ViewChild('calendar') fc: FullCalendar
   events: any[];
   options: any;
-  calendarPlugins = [dayGridPlugin];
   title = 'MLB-app';
   dates: Dates[];
   teamList: Team[];
@@ -34,20 +33,9 @@ export class AppComponent implements OnInit {
 
   }
 
-
-  someMethod() {
-    let calendarApi = this.calendarComponent.getApi();
-    calendarApi.render();
-  }
-
   ngOnInit() {
-    document.addEventListener('DOMContentLoaded', function () {
-      let calendarEl: HTMLElement = document.getElementById('calendar')!;
-      
 
-
-    });
-   this.options = {
+    this.options = {
       plugins: [dayGridPlugin],
       defaultDate: this.service.getNow(),
       customButtons: {
@@ -65,9 +53,21 @@ export class AppComponent implements OnInit {
       aspectRatio: 2.0,
       contentHeight: 850,
       eventTextColor: "#ffff",
+      eventRender: (event) => {
+        var bgEventTitle = document.createElement('div');
 
+        bgEventTitle.style.position = 'absolute';
+        bgEventTitle.style.bottom = '0';
+        bgEventTitle.classList.add('fc-event');
+        bgEventTitle.innerHTML = '<span class="fc-title">' + event.title + '</span>';
+        /* set container element positioning to relative so the positioning above will work */
+        // console.log(event.el)
+      event.el
+        //event.el.html(bgEventTitle);
+        //event.el.css('position', 'relative').html(bgEventTitle);
+      }
     };
-    this.someMethod();
+
   }
 
 
@@ -96,6 +96,7 @@ export class AppComponent implements OnInit {
       this.team = selection;
       this.service.getDates(this.team.name).subscribe(schedule => {
         this.clearEvents();
+
 
 
         for (let event of schedule) {

@@ -3,21 +3,12 @@
 
 
 <div style="text-align:center">
-<h1>
-  MLB CALENDAR
-</h1></div>
-<div id="calendar">
-
-
-  <full-calendar #calendar *ngIf="options" 
-  [events]="options.events" 
-  [plugins]="options.plugins"
-  [header]="options.header"
-  [customButtons]="options.customButtons"
-  [aspectRatio]="options.aspectRatio"
-  [height]="options.height"
-  [contentHeight]="options.contentHeight"
-  [eventTextColor]="options.eventTextColor"></full-calendar>
+  <h1>
+    MLB CALENDAR
+  </h1>
+</div>
+<div>
+  <p-fullCalendar #calendar [events]="events" [options]="options"></p-fullCalendar>
   <div>
 
 

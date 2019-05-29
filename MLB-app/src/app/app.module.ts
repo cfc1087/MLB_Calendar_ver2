@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { DatePipe } from '@angular/common';
 import { DialogComponent } from './dialog/dialog.component';
-import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullCalendarModule } from 'primeng/fullcalendar';
 
 @NgModule({
   declarations: [
