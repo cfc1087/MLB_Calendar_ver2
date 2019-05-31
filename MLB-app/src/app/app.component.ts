@@ -54,17 +54,24 @@ export class AppComponent implements OnInit {
       contentHeight: 850,
       eventTextColor: "#ffff",
       eventRender: (event) => {
-        var bgEventTitle = document.createElement('div');
 
-        bgEventTitle.style.position = 'absolute';
-        bgEventTitle.style.bottom = '0';
-        bgEventTitle.classList.add('fc-event');
-        bgEventTitle.innerHTML = '<span class="fc-title">' + event.title + '</span>';
-        /* set container element positioning to relative so the positioning above will work */
-        // console.log(event.el)
-      event.el
-        //event.el.html(bgEventTitle);
-        //event.el.css('position', 'relative').html(bgEventTitle);
+        let element: Element = event.el;
+        let s: String = event.event.title;
+        
+        let away: String = s.substring(s.lastIndexOf('@') + 1, s.length);
+        let home: String = s.split("VS")[1];
+       
+        if (event.event.backgroundColor === this.team.color) {
+          element.insertAdjacentHTML('beforeend', '<p style="color:white; text-align:center">' + this.team.name + '</p>'
+          + '<p style="color:white; text-align:center">' + 'VS' + '</p>'
+          + '<p style="color:white; text-align:center">'+home+'</p>');
+        }
+        else {
+          element.insertAdjacentHTML('beforeend', '<p style="color:black; text-align:center">' + this.team.name + '</p>'
+            + '<p style="color:black; text-align:center">' + '@' + '</p>'
+            + '<p style="color:black; text-align:center">'+away+'</p>');
+        }
+
       }
     };
 
@@ -102,20 +109,21 @@ export class AppComponent implements OnInit {
         for (let event of schedule) {
           if (event.games[0].home === this.team.name) {
             this.events.push({
-              title: this.team.name + ' VS ' + event.games[0].away,
+              title: this.team.name + 'VS' + event.games[0].away,
               start: event.date,
               rendering: 'background',
               color: this.team.color,
+              test: 'test'
 
 
             })
           } else {
             this.events.push({
-              title: this.team.name + ' @ ' + event.games[0].away,
+              title: this.team.name + '@' + event.games[0].home,
               start: event.date,
               rendering: 'background',
               color: '#bcbcbc',
-
+              test: 'test'
             })
           }
         }
