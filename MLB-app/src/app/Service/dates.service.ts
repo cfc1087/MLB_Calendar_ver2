@@ -18,18 +18,21 @@ export class DatesService {
   constructor(private http: HttpClient, private datePipe: DatePipe) {
 
   }
-  getDates(teamSelected: String): Observable<any> {
+  /*getDates(teamSelected: String): Observable<any> {
 
     return this.http.get<Events[]>('http://localhost:8080/' + teamSelected.replace(/ /g, ""));
   
  //   return this.http.get('http://localhost:8080/' + teamSelected.replace(/ /g, ""));//'?monthSelected='+this.monthSelected);
+  }*/
+  getDates(teamSelected: String): Observable<any> {
+
+    return this.http.get<Events[]>('/api/'+teamSelected.replace(/ /g, ""));
+
   }
   getTeamList(): Observable<any> {
-    return this.http.get('http://localhost:8080');
+    return this.http.get('http://localhost:8080/');
   }
-  getTeamColor(teamSelected: String) {
-    return this.http.get('http://localhost:8080' + teamSelected.replace(/ /g, "") + '/color');
-  }
+
   getNow() {
     return this.datePipe.transform(this.now, 'yyyy-MM-dd');
   }

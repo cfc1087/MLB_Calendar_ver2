@@ -24,7 +24,7 @@ public class TeamSelectionController {
 	@Autowired
 	private TeamScheduleService tss;
 	
-@GetMapping("/{teamSelected}")//default get request with  LocalDate.now()
+@GetMapping("/api/{teamSelected}")//default get request with  LocalDate.now()
 public Dates[] getDates(@PathVariable String teamSelected,
 						@RequestParam(value="monthSelected",required=false)Month monthSelected) throws IOException {
 
