@@ -10,7 +10,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { FullCalendar } from 'primeng/fullcalendar';
-import { element } from '@angular/core/src/render3';
+import { element, elementStyling } from '@angular/core/src/render3';
 
 
 
@@ -26,14 +26,15 @@ export class AppComponent implements OnInit {
   title = 'MLB-app';
   dates: Dates[];
   teamList: Team[];
-  color: String;
+  color: String ;
   team: Team;
 
   constructor(private service: DatesService, public dialog: MatDialog) {
-
+this.color = '#fff'
   }
 
   ngOnInit() {
+
 
     this.options = {
       plugins: [dayGridPlugin],
@@ -49,34 +50,33 @@ export class AppComponent implements OnInit {
         center: 'title',
         right: 'myCustomButton',
       },
+
       height: 850,
       aspectRatio: 2.0,
       contentHeight: 850,
       eventTextColor: "#ffff",
       eventRender: (event) => {
 
-        let element: Element = event.el;
+       /* let element: Element = event.el;
         let s: String = event.event.title;
-        
+
         let away: String = s.substring(s.lastIndexOf('@') + 1, s.length);
         let home: String = s.split("VS")[1];
-       
-        if (event.event.backgroundColor === this.team.color) {
-          element.insertAdjacentHTML('beforeend', '<p style="color:white; text-align:center">' + this.team.name + '</p>'
-          + '<p style="color:white; text-align:center">' + 'VS' + '</p>'
-          + '<p style="color:white; text-align:center">'+home+'</p>');
+
+       if (event.event.backgroundColor === this.team.color) {
+          element.insertAdjacentHTML('beforeend', '<p style="color:white; text-align:center">vs. ' + home + '</p>');
         }
         else {
-          element.insertAdjacentHTML('beforeend', '<p style="color:black; text-align:center">' + this.team.name + '</p>'
-            + '<p style="color:black; text-align:center">' + '@' + '</p>'
-            + '<p style="color:black; text-align:center">'+away+'</p>');
-        }
+          element.insertAdjacentHTML('beforeend', '<p style="color:black; text-align:center">' + '@ ' + away + '</p>');
+        }*/
 
       }
     };
-
+   
   }
-
+getColor(){
+  return this.color;
+}
 
 
   click() {
@@ -101,29 +101,35 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe(selection => {
 
       this.team = selection;
+      this.color = this.team.color;
       this.service.getDates(this.team.name).subscribe(schedule => {
         this.clearEvents();
+        //console.log(schedule[0].games[0].gameDate)
 
 
 
         for (let event of schedule) {
+          let startTime: string = event.games[0].gameDate;
+
+         
+          // console.log(event.games[0].gameDate);
           if (event.games[0].home === this.team.name) {
             this.events.push({
-              title: this.team.name + 'VS' + event.games[0].away,
-              start: event.date,
-              rendering: 'background',
+              title: '\nVS\n' + event.games[0].away,
+              start: startTime,
+              //rendering: 'background',
               color: this.team.color,
-              test: 'test'
+
 
 
             })
           } else {
             this.events.push({
-              title: this.team.name + '@' + event.games[0].home,
-              start: event.date,
-              rendering: 'background',
+              title: '\n@\n' + event.games[0].home,
+              start: startTime,//event.date,
+             // rendering: 'background',
               color: '#bcbcbc',
-              test: 'test'
+
             })
           }
         }

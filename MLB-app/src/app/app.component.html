@@ -6,13 +6,33 @@
   <h1>
     MLB CALENDAR
   </h1>
-  
 </div>
-<div>
-  <p-fullCalendar #calendar [events]="events" [options]="options"></p-fullCalendar>
-  <div>
 
 
-  </div>
+<div style="text-align: center;">
 
-  <router-outlet></router-outlet>
+  <h4>{{team?.name}}</h4></div>
+  <div align="center" style="align-content: center">
+  <table style="width: 25%; text-align: center" class="content input-color">
+    <tr>
+      <td><label>Away</label></td>
+     <td><div class="color-box" style="background-color: #bcbcbc;"></div></td>
+      <td><label>Home</label></td>
+     <td> <div class="color-box" [ngStyle]="{'background-color': getColor()}"></div></td>
+    </tr>
+
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+<p-fullCalendar #calendar [events]="events" [options]="options">test</p-fullCalendar>
+
+
+<router-outlet></router-outlet>

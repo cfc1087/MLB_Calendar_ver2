@@ -1,0 +1,22 @@
+ul {
+    margin: 20px;
+}
+
+.input-color {
+    position: relative;
+   
+}
+.input-color input {
+    padding-left: 0px;
+}
+.input-color .color-box {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-color: #ccc;
+    position: relative;
+    left: 0px;
+    top: 5px;
+   
+   
+}
