@@ -47,15 +47,17 @@ var DatesService = /** @class */ (function () {
         this.datePipe = datePipe;
         this.now = new Date();
     }
+    /*getDates(teamSelected: String): Observable<any> {
+  
+      return this.http.get<Events[]>('http://localhost:8080/' + teamSelected.replace(/ /g, ""));
+    
+   //   return this.http.get('http://localhost:8080/' + teamSelected.replace(/ /g, ""));//'?monthSelected='+this.monthSelected);
+    }*/
     DatesService.prototype.getDates = function (teamSelected) {
-        return this.http.get('http://localhost:8080/' + teamSelected.replace(/ /g, ""));
-        //   return this.http.get('http://localhost:8080/' + teamSelected.replace(/ /g, ""));//'?monthSelected='+this.monthSelected);
+        return this.http.get('/api/' + teamSelected.replace(/ /g, ""));
     };
     DatesService.prototype.getTeamList = function () {
-        return this.http.get('http://localhost:8080');
-    };
-    DatesService.prototype.getTeamColor = function (teamSelected) {
-        return this.http.get('http://localhost:8080' + teamSelected.replace(/ /g, "") + '/color');
+        return this.http.get('http://localhost:8080/');
     };
     DatesService.prototype.getNow = function () {
         return this.datePipe.transform(this.now, 'yyyy-MM-dd');
