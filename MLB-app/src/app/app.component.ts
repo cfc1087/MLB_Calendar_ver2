@@ -26,15 +26,17 @@ export class AppComponent implements OnInit {
   title = 'MLB-app';
   dates: Dates[];
   teamList: Team[];
-  color: String ;
+  color: String;
   team: Team;
 
   constructor(private service: DatesService, public dialog: MatDialog) {
-this.color = '#fff'
+    this.color = '#fff'
   }
 
   ngOnInit() {
-
+    this.service.getTeamList().subscribe(data => {
+      this.teamList = data;
+    });
 
     this.options = {
       plugins: [dayGridPlugin],
@@ -51,38 +53,36 @@ this.color = '#fff'
         right: 'myCustomButton',
       },
 
-      height: 850,
-      aspectRatio: 2.0,
-      contentHeight: 850,
+
+      contentHeight: 700,
+
       eventTextColor: "#ffff",
       eventRender: (event) => {
 
-       /* let element: Element = event.el;
-        let s: String = event.event.title;
-
-        let away: String = s.substring(s.lastIndexOf('@') + 1, s.length);
-        let home: String = s.split("VS")[1];
-
-       if (event.event.backgroundColor === this.team.color) {
-          element.insertAdjacentHTML('beforeend', '<p style="color:white; text-align:center">vs. ' + home + '</p>');
-        }
-        else {
-          element.insertAdjacentHTML('beforeend', '<p style="color:black; text-align:center">' + '@ ' + away + '</p>');
-        }*/
+        /* let element: Element = event.el;
+         let s: String = event.event.title;
+ 
+         let away: String = s.substring(s.lastIndexOf('@') + 1, s.length);
+         let home: String = s.split("VS")[1];
+ 
+        if (event.event.backgroundColor === this.team.color) {
+           element.insertAdjacentHTML('beforeend', '<p style="color:white; text-align:center">vs. ' + home + '</p>');
+         }
+         else {
+           element.insertAdjacentHTML('beforeend', '<p style="color:black; text-align:center">' + '@ ' + away + '</p>');
+         }*/
 
       }
     };
-   
+
   }
-getColor(){
-  return this.color;
-}
+  getColor() {
+    return this.color;
+  }
 
 
   click() {
-    this.service.getTeamList().subscribe(data => {
-      this.teamList = data;
-    });
+
     this.openModal();
   }
   openModal(): void {
@@ -104,33 +104,39 @@ getColor(){
       this.color = this.team.color;
       this.service.getDates(this.team.name).subscribe(schedule => {
         this.clearEvents();
-        //console.log(schedule[0].games[0].gameDate)
-
 
 
         for (let event of schedule) {
           let startTime: string = event.games[0].gameDate;
 
-         
+
           // console.log(event.games[0].gameDate);
           if (event.games[0].home === this.team.name) {
             this.events.push({
               title: '\nVS\n' + event.games[0].away,
               start: startTime,
-              //rendering: 'background',
+
               color: this.team.color,
-
-
-
             })
+            if (event.games.length > 1) {
+              this.events.push({
+                start: event.games[1].gameDate,
+                color: this.team.color,
+              })
+            }
           } else {
             this.events.push({
               title: '\n@\n' + event.games[0].home,
-              start: startTime,//event.date,
-             // rendering: 'background',
+              start: startTime,
               color: '#bcbcbc',
 
             })
+            if (event.games.length > 1) {
+              this.events.push({
+                start: event.games[1].gameDate,
+                color: '#bcbcbc',
+              })
+            }
           }
         }
 

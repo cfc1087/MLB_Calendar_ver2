@@ -18,7 +18,7 @@ import com.mlb.demo.model.TeamInfo;
 
 
 @CrossOrigin
-@RestController("/")
+@RestController
 public class TeamSelectionController {
 
 	@Autowired

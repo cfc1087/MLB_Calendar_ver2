@@ -1,20 +1,36 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>MLBApp</title>
   <base href="/">
-  <link   href="/node_modules/primeicons/primeicons.css" />
-  <link   href="/node_modules/primeng/resources/themes/nova-light/theme.css" />
-  <link   href="/node_modules/primeng/resources/primeng.min.css" />
+  <link href="/node_modules/primeicons/primeicons.css" />
+  <link href="/node_modules/primeng/resources/themes/nova-light/theme.css" />
+  <link href="/node_modules/primeng/resources/primeng.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
 
-  
+
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    body {
+      margin: 40px 10px;
+    }
+
+    #calendar {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+  </style>
+
 </head>
+
 <body>
-  <app-root></app-root>
+  <div id="calendar">
+    <app-root></app-root>
+  </div>
 </body>
+
 </html>

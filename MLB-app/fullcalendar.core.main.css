@@ -106,7 +106,8 @@ hr.fc-divider {
 .fc th,
 .fc td {
   border-style: solid;
-  border-width: 2px;
+  border-width: 4px;
+  
   padding: 0;
   vertical-align: top; }
 
@@ -491,7 +492,8 @@ TODO: more distinction between this file and common.css
 .fc-unthemed .fc-popover,
 .fc-unthemed .fc-list-view,
 .fc-unthemed .fc-list-heading td {
-  border-color: #ddd; }
+  border-color: #ddd; 
+}
 
 .fc-unthemed .fc-popover {
   background-color: #fff; }
@@ -720,7 +722,10 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* View Structure
 --------------------------------------------------------------------------------------------------*/
 .fc-view-container {
-  position: relative; }
+  position: absolute;
+  width: 1000px;
+  
+}
 
 /* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
 /* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
@@ -881,12 +886,12 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   /* Vertical Scroller & Containers
   --------------------------------------------------------------------------------------------------*/
   /* kill the scrollbars and allow natural height */
-  .fc-scroller,
+  /*.fc-scroller,
   .fc-day-grid-container,
   .fc-time-grid-container {
     /* */
-    overflow: visible !important;
-    height: auto !important; }
+    /*overflow: visible !important;*/
+    /*height: auto !important; }*/
 
   /* kill the horizontal border/padding used to compensate for scrollbars */
   .fc-row {

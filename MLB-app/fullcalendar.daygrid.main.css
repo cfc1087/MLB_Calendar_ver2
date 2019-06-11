@@ -13,7 +13,8 @@ Docs & License: https://fullcalendar.io/
   /* ensure a space at bottom of cell for user selecting/clicking */ }
 
 .fc-dayGrid-view .fc-body .fc-row {
-  min-height: 4em;
+  min-height: 5em;
+  
   /* ensure that all rows are at least this tall */ }
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
@@ -57,7 +58,7 @@ Docs & License: https://fullcalendar.io/
   border-radius: 0 0 0 3px; }
 
 .fc-dayGrid-view .fc-day-top .fc-week-number {
-  min-width: 1.5em;
+  min-width: .5em;
   text-align: center;
   background-color: #f2f2f2;
   color: #808080; }
@@ -69,4 +70,4 @@ Docs & License: https://fullcalendar.io/
 .fc-dayGrid-view td.fc-week-number > * {
   /* work around the way we do column resizing and ensure a minimum width */
   display: inline-block;
-  min-width: 1.25em; }
+  min-width: .5em; }
