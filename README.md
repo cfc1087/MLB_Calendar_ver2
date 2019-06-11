@@ -16,6 +16,6 @@ Web app that shows the monthly MLB schedule. The schedule is pulled from StatsAp
 ## Built With
 * Spring Boot
 * Angular 7
-* [PrimeNG FullCalendar] (https://www.primefaces.org/primeng/#/fullcalendar)
+* [PrimeNG FullCalendar](https://www.primefaces.org/primeng/#/fullcalendar)
 * Maven
 * Gson
