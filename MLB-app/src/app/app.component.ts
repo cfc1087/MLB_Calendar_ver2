@@ -110,27 +110,28 @@ export class AppComponent implements OnInit {
           let startTime: string = event.games[0].gameDate;
 
 
-          // console.log(event.games[0].gameDate);
+         //push home games
           if (event.games[0].home === this.team.name) {
             this.events.push({
               title: '\nVS\n' + event.games[0].away,
               start: startTime,
-
               color: this.team.color,
             })
+            //doubleheader home games
             if (event.games.length > 1) {
               this.events.push({
                 start: event.games[1].gameDate,
                 color: this.team.color,
               })
             }
-          } else {
+          } else {//push away games
             this.events.push({
               title: '\n@\n' + event.games[0].home,
               start: startTime,
               color: '#bcbcbc',
 
             })
+            //doubleheader away games
             if (event.games.length > 1) {
               this.events.push({
                 start: event.games[1].gameDate,
